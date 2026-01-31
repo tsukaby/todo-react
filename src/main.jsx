@@ -5,9 +5,9 @@ import './index.css'
 
 // eslint-disable-next-line react-refresh/only-export-components
 const DATA = [
-  { id: "todo-0", name: "Eat", completed: true },
-  { id: "todo-1", name: "Sleep", completed: false },
-  { id: "todo-2", name: "Repeat", completed: false },
+  { id: "todo-0", name: "Eat", completed: true, priority: "low", dueDate: "2026-01-30" },
+  { id: "todo-1", name: "Sleep", completed: false, priority: "medium", dueDate: "2026-01-31" },
+  { id: "todo-2", name: "Repeat", completed: false, priority: "high", dueDate: "2026-02-01" },
 ];
 
 ReactDOM.createRoot(document.getElementById('root')).render(
