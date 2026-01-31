@@ -85,6 +85,7 @@ function App(props) {
         id={task.id}
         name={task.name}
         completed={task.completed}
+        dueDate={task.dueDate}
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
         deleteTask={deleteTask}
