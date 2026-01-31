@@ -17,6 +17,28 @@ function Todo(props) {
 
   const wasEditing = usePrevious(isEditing);
 
+  // Calculate due date status
+  const getDueDateStatus = () => {
+    if (!props.dueDate) return null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const dueDate = new Date(props.dueDate);
+    dueDate.setHours(0, 0, 0, 0);
+
+    if (dueDate < today) return 'overdue';
+    if (dueDate.getTime() === today.getTime()) return 'today';
+    return 'future';
+  };
+
+  const dueDateStatus = getDueDateStatus();
+
+  // Set background color based on due date status
+  const getBackgroundColor = () => {
+    if (dueDateStatus === 'overdue') return '#ffe6e6';
+    if (dueDateStatus === 'today') return '#fffacd';
+    return 'transparent';
+  };
+
   function handleChange(event) {
     setNewName(event.target.value);
   }
