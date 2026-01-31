@@ -106,12 +106,13 @@ function App(props) {
     />
   ));
 
-  function addTask(name, priority = "medium") {
+  function addTask(name, priority = "medium", dueDate = "") {
     const newTask = {
       id: "todo-" + nanoid(),
       name: name,
       completed: false,
       priority: priority,
+      dueDate: dueDate,
     };
     setTasks([...tasks, newTask]);
   }
