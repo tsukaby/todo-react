@@ -91,7 +91,14 @@ function Todo(props) {
   };
 
   const viewTemplate = (
-    <div className="stack-small" style={{ display: 'flex', alignItems: 'stretch' }}>
+    <div className="stack-small" style={{
+      display: 'flex',
+      alignItems: 'stretch',
+      backgroundColor: getBackgroundColor(),
+      padding: '8px',
+      borderRadius: '4px',
+      transition: 'background-color 0.2s'
+    }}>
       <div
         style={{
           width: '4px',
@@ -112,6 +119,18 @@ function Todo(props) {
             {props.name}
           </label>
         </div>
+        {props.dueDate && (
+          <div style={{
+            fontSize: '0.875rem',
+            marginTop: '4px',
+            marginLeft: '28px',
+            color: dueDateStatus === 'overdue' ? '#cc0000' : dueDateStatus === 'today' ? '#996600' : '#666'
+          }}>
+            Due: {new Date(props.dueDate).toLocaleDateString()}
+            {dueDateStatus === 'overdue' && ' (Overdue)'}
+            {dueDateStatus === 'today' && ' (Today)'}
+          </div>
+        )}
         <div className="btn-group">
           <button
             type="button"
