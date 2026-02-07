@@ -84,70 +84,35 @@ function Todo(props) {
     </form>
   );
 
-  const priorityColors = {
-    high: '#ff4444',
-    medium: '#ffaa00',
-    low: '#44ff44'
-  };
-
   const viewTemplate = (
-    <div className="stack-small" style={{
-      display: 'flex',
-      alignItems: 'stretch',
-      backgroundColor: getBackgroundColor(),
-      padding: '8px',
-      borderRadius: '4px',
-      transition: 'background-color 0.2s'
-    }}>
-      <div
-        style={{
-          width: '4px',
-          backgroundColor: priorityColors[props.priority] || priorityColors.medium,
-          marginRight: '12px',
-          borderRadius: '2px'
-        }}
-      />
-      <div style={{ flex: 1 }}>
-        <div className="c-cb">
-          <input
-            id={props.id}
-            type="checkbox"
-            defaultChecked={props.completed}
-            onChange={() => props.toggleTaskCompleted(props.id)}
-          />
-          <label className="todo-label" htmlFor={props.id}>
-            {props.name}
-          </label>
-        </div>
-        {props.dueDate && (
-          <div style={{
-            fontSize: '0.875rem',
-            marginTop: '4px',
-            marginLeft: '28px',
-            color: dueDateStatus === 'overdue' ? '#cc0000' : dueDateStatus === 'today' ? '#996600' : '#666'
-          }}>
-            Due: {new Date(props.dueDate).toLocaleDateString()}
-            {dueDateStatus === 'overdue' && ' (Overdue)'}
-            {dueDateStatus === 'today' && ' (Today)'}
-          </div>
-        )}
-        <div className="btn-group">
-          <button
-            type="button"
-            className="btn"
-            onClick={() => {
-              setEditing(true);
-            }}
-            ref={editButtonRef}>
-            Edit <span className="visually-hidden">{props.name}</span>
-          </button>
-          <button
-            type="button"
-            className="btn btn__danger"
-            onClick={() => props.deleteTask(props.id)}>
-            Delete <span className="visually-hidden">{props.name}</span>
-          </button>
-        </div>
+    <div className="stack-small">
+      <div className="c-cb">
+        <input
+          id={props.id}
+          type="checkbox"
+          defaultChecked={props.completed}
+          onChange={() => props.toggleTaskCompleted(props.id)}
+        />
+        <label className="todo-label" htmlFor={props.id}>
+          {props.name}
+        </label>
+      </div>
+      <div className="btn-group">
+        <button
+          type="button"
+          className="btn"
+          onClick={() => {
+            setEditing(true);
+          }}
+          ref={editButtonRef}>
+          Edit <span className="visually-hidden">{props.name}</span>
+        </button>
+        <button
+          type="button"
+          className="btn btn__danger"
+          onClick={() => props.deleteTask(props.id)}>
+          Delete <span className="visually-hidden">{props.name}</span>
+        </button>
       </div>
     </div>
   );

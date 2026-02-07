@@ -30,10 +30,7 @@ function App(props) {
       return savedTheme;
     }
     // If no saved theme, check system preference
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       return "dark";
     }
     return "light";
@@ -89,7 +86,6 @@ function App(props) {
         name={task.name}
         completed={task.completed}
         dueDate={task.dueDate}
-        priority={task.priority}
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
         deleteTask={deleteTask}
@@ -106,14 +102,8 @@ function App(props) {
     />
   ));
 
-  function addTask(name, priority = "medium", dueDate = "") {
-    const newTask = {
-      id: "todo-" + nanoid(),
-      name: name,
-      completed: false,
-      priority: priority,
-      dueDate: dueDate,
-    };
+  function addTask(name) {
+    const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
     setTasks([...tasks, newTask]);
   }
 
